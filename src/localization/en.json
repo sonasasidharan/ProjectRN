@@ -1,0 +1,11 @@
+{
+    "loginTitle": "Login",
+    "policyText": "By signing in you are agreeing to our ",
+    "termsPolicy": "Terms and privacy policy",
+    "rememberPassword": "Remember password",
+    "forgotPassword": "Forget password",
+    "orConnectWith": "or connect with",
+    "login": "Login",
+    "register": "Register",
+    "touchLogin": "Login with touch"
+  }

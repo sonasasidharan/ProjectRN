@@ -1,0 +1,11 @@
+{
+    "loginTitle": "Connexion",
+    "policyText": "En vous connectant, vous acceptez nos ",
+    "termsPolicy": "Conditions générales et politique de confidentialité",
+    "rememberPassword": "Se souvenir du mot de passe",
+    "forgotPassword": "Mot de passe oublié",
+    "orConnectWith": "ou connectez-vous avec",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "touchLogin": "Connexion tactile"
+  }

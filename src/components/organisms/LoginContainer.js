@@ -6,6 +6,8 @@ import SocialLoginButtons from '../molicules/SocialLoginButtons';
 import TextComponent from '../atoms/TextComponent';
 import TouchLoginButton from '../molicules/TouchLoginButton';
 import Button from '../atoms/Button';
+import { useTranslation } from 'react-i18next';
+// import i18n from '../../localization/i18next';
 
 export default function LoginContainer({ 
   username, 
@@ -18,17 +20,32 @@ export default function LoginContainer({
   setRemember, 
   handleLogin 
 }) {
+
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+  }
   return (
     <View style={styles.card}>
-      <TextComponent style={styles.title}>Login</TextComponent>
-      <TextComponent style={styles.policyText}>
-        By signing in you are agreeing to our{' '}
-        <TextComponent style={styles.link}>Terms and privacy policy</TextComponent>
+
+<View style={styles.languageSwitcher}>
+        <TouchableOpacity onPress={() => changeLanguage('en')}>
+          <Text style={styles.languageText}>English</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => changeLanguage('fr')}>
+          <Text style={styles.languageText}>Français</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TextComponent style={styles.title}>{t('loginTitle')}</TextComponent>
+      <TextComponent style={styles.policyText}> {t('policyText')} {' '}
+        <TextComponent style={styles.link}>{t('termsPolicy')}</TextComponent>
       </TextComponent>
 
       <View style={styles.switchContainer}>
-        <Text style={styles.switchText}>Login</Text>
-        <Text style={[styles.switchText, styles.inactiveText]}>Register</Text>
+        <Text style={styles.switchText}>{t('login')}</Text>
+        <Text style={[styles.switchText, styles.inactiveText]}>{t('register')}</Text>
       </View>
 
       <LoginForm
@@ -42,17 +59,23 @@ export default function LoginContainer({
       />
 
 <View style={styles.optionsContainer}>
-        <SwitchAtom label="Remember password" value={remember} onValueChange={setRemember} />
-        <TouchableOpacity  onPress={() => Alert.alert('Forgot Password', 'Please reset your password')}>
-          <Text style={styles.forgotText}>Forget password</Text>
-        </TouchableOpacity>
-      </View>
-      <Button title="Login" onPress={handleLogin} />
+        <SwitchAtom label={t('rememberPassword')} value={remember} onValueChange={setRemember} />
+        {/* <TouchableOpacity  onPress={() => Alert.alert({t('ForgotPassword'), 'Please reset your password'})}>
+          <Text style={styles.forgotText}>{t.('forgotPassword')}</Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity onPress={() => Alert.alert(t('ForgotPassword'), 'Please reset your password')}>
+         <Text>{t('ForgotPassword')}</Text>
+          </TouchableOpacity>
 
-      <TextComponent style={styles.connectText}>or connect with</TextComponent>
+      </View>
+      <Button title={t('login')} onPress={handleLogin} />
+
+      {/* <TextComponent style={styles.connectText}>{t.('orConnectWith')}</TextComponent> */}
+      <TextComponent style={styles.connectText}>{t('orConnectWith')}</TextComponent>
+
       <SocialLoginButtons />
       <View style={styles.container}>
-        <TouchLoginButton onPress={() => Alert.alert('Touch Login', 'Login with touch ')} />
+        <TouchLoginButton onPress={() => Alert.alert(t('touchLogin'), 'Login with touch ')} />
       </View>
     </View>
   );
